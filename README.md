@@ -1,5 +1,4 @@
-## Malick Sokhona 21910279
-## Rousseau Pierre-alexandre 21902963
+## Daouda Traore
 
 # Système d'Identification de Véhicules par Détection de Plaques d'Immatriculation
 
