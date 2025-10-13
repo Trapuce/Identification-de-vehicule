@@ -101,7 +101,7 @@ print_success "Service systemd configuré et démarré"
 print_step "8. Configuration de Nginx..."
 cat > /etc/nginx/sites-available/$NGINX_SITE << EOF
 server {
-    listen 80;
+    listen 8080;
     server_name $DOMAIN;
 
     location / {
@@ -135,9 +135,9 @@ ufw allow ssh
 ufw allow 'Nginx Full'
 print_success "Firewall configuré"
 
-print_step "10. Installation de Certbot pour SSL..."
-apt install -y certbot python3-certbot-nginx
-print_success "Certbot installé"
+print_step "10. Configuration du firewall pour le port 8080..."
+ufw allow 8080
+print_success "Port 8080 ouvert dans le firewall"
 
 print_step "11. Vérification des services..."
 sleep 5
@@ -159,8 +159,8 @@ echo -e "\n${GREEN}🎉 Déploiement terminé !${NC}"
 echo "=================================="
 echo -e "${BLUE}Prochaines étapes :${NC}"
 echo "1. Configurez votre DNS pour pointer $DOMAIN vers cette IP"
-echo "2. Exécutez : certbot --nginx -d $DOMAIN"
-echo "3. Votre application sera accessible à : https://$DOMAIN"
+echo "2. Votre application sera accessible à : http://$DOMAIN:8080"
+echo "3. Pour SSL, configurez votre conteneur Nginx Docker existant"
 echo ""
 echo -e "${YELLOW}Pour mettre à jour l'application :${NC}"
 echo "cd $APP_DIR && git pull origin main && systemctl restart $SERVICE_NAME"
