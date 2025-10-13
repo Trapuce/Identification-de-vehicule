@@ -13,7 +13,7 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Variables
-APP_DIR="/opt/anpr"
+APP_DIR="$(pwd)"  # Utiliser le répertoire courant
 SERVICE_NAME="anpr"
 NGINX_SITE="anpr"
 DOMAIN="anpr.trapuce.tech"
@@ -49,16 +49,16 @@ apt install -y python3 python3-pip python3-venv tesseract-ocr tesseract-ocr-fra 
 print_success "Dépendances installées"
 
 print_step "3. Vérification du répertoire de l'application..."
-if [ ! -d "$APP_DIR" ]; then
-    print_error "Le répertoire $APP_DIR n'existe pas !"
-    print_error "Assurez-vous d'avoir cloné le projet dans $APP_DIR"
-    print_error "Utilisez: git clone https://github.com/votre-username/Identification-de-vehicule.git $APP_DIR"
+if [ ! -f "requirements.txt" ] || [ ! -d "plate_recognition" ]; then
+    print_error "Ce n'est pas le bon répertoire !"
+    print_error "Assurez-vous d'être dans le répertoire du projet Identification-de-vehicule"
+    print_error "Utilisez: git clone https://github.com/Trapuce/Identification-de-vehicule.git"
+    print_error "Puis: cd Identification-de-vehicule"
     exit 1
 fi
-print_success "Répertoire de l'application trouvé"
+print_success "Répertoire de l'application trouvé: $APP_DIR"
 
 print_step "4. Configuration de l'environnement Python..."
-cd $APP_DIR
 python3 -m venv venv
 source venv/bin/activate
 pip install --upgrade pip
@@ -161,6 +161,9 @@ echo -e "${BLUE}Prochaines étapes :${NC}"
 echo "1. Configurez votre DNS pour pointer $DOMAIN vers cette IP"
 echo "2. Exécutez : certbot --nginx -d $DOMAIN"
 echo "3. Votre application sera accessible à : https://$DOMAIN"
+echo ""
+echo -e "${YELLOW}Pour mettre à jour l'application :${NC}"
+echo "cd $APP_DIR && git pull origin main && systemctl restart $SERVICE_NAME"
 echo ""
 echo -e "${YELLOW}Commandes utiles :${NC}"
 echo "- Vérifier les logs : journalctl -u $SERVICE_NAME -f"
