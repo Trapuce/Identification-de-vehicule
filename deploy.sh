@@ -86,7 +86,7 @@ User=www-data
 Group=www-data
 WorkingDirectory=$APP_DIR
 Environment=PATH=$APP_DIR/venv/bin
-ExecStart=$APP_DIR/venv/bin/gunicorn --bind 127.0.0.1:8000 --workers 4 --timeout 120 --access-logfile - --error-logfile - plate_recognition.app:app
+ExecStart=$APP_DIR/venv/bin/gunicorn --bind 0.0.0.0:3001 --workers 4 --timeout 120 --access-logfile - --error-logfile - plate_recognition.app:app
 Restart=always
 
 [Install]
@@ -98,48 +98,19 @@ systemctl enable $SERVICE_NAME
 systemctl start $SERVICE_NAME
 print_success "Service systemd configuré et démarré"
 
-print_step "8. Configuration de Nginx..."
-cat > /etc/nginx/sites-available/$NGINX_SITE << EOF
-server {
-    listen 8080;
-    server_name $DOMAIN;
-
-    location / {
-        proxy_pass http://127.0.0.1:8000;
-        proxy_set_header Host \$host;
-        proxy_set_header X-Real-IP \$remote_addr;
-        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto \$scheme;
-    }
-
-    location /static {
-        alias $APP_DIR/plate_recognition/static;
-        expires 1y;
-        add_header Cache-Control "public, immutable";
-    }
-}
-EOF
-
-# Activer le site
-ln -sf /etc/nginx/sites-available/$NGINX_SITE /etc/nginx/sites-enabled/
-rm -f /etc/nginx/sites-enabled/default
-
-# Tester la configuration
-nginx -t
-systemctl restart nginx
-print_success "Nginx configuré"
+print_step "8. Désactivation de Nginx système (conflit avec Docker)..."
+# Arrêter et désactiver Nginx système
+systemctl stop nginx 2>/dev/null || true
+systemctl disable nginx 2>/dev/null || true
+print_success "Nginx système désactivé"
 
 print_step "9. Configuration du firewall..."
 ufw --force enable
 ufw allow ssh
-ufw allow 'Nginx Full'
-print_success "Firewall configuré"
+ufw allow 3001
+print_success "Firewall configuré (port 3001 ouvert)"
 
-print_step "10. Configuration du firewall pour le port 8080..."
-ufw allow 8080
-print_success "Port 8080 ouvert dans le firewall"
-
-print_step "11. Vérification des services..."
+print_step "10. Vérification des services..."
 sleep 5
 if systemctl is-active --quiet $SERVICE_NAME; then
     print_success "Service $SERVICE_NAME actif"
@@ -148,18 +119,13 @@ else
     systemctl status $SERVICE_NAME
 fi
 
-if systemctl is-active --quiet nginx; then
-    print_success "Nginx actif"
-else
-    print_error "Nginx inactif"
-    systemctl status nginx
-fi
+# Nginx système désactivé, pas de vérification nécessaire
 
 echo -e "\n${GREEN}🎉 Déploiement terminé !${NC}"
 echo "=================================="
 echo -e "${BLUE}Prochaines étapes :${NC}"
 echo "1. Configurez votre DNS pour pointer $DOMAIN vers cette IP"
-echo "2. Votre application sera accessible à : http://$DOMAIN:8080"
+echo "2. Votre application sera accessible à : http://$DOMAIN:3001"
 echo "3. Pour SSL, configurez votre conteneur Nginx Docker existant"
 echo ""
 echo -e "${YELLOW}Pour mettre à jour l'application :${NC}"
