@@ -109,26 +109,23 @@
 
   <!-- Navbar compacte -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3 py-2">
-    <a class="navbar-brand fw-bold" href="/">🚘 ANPR</a>
+    <a class="navbar-brand fw-bold" href="/">ANPR</a>
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="/">🏠 Accueil</a></li>
-        <li class="nav-item"><a class="nav-link" href="/history">📋 Historique</a></li>
-        <li class="nav-item"><a class="nav-link" href="/admin">⚙️ Admin</a></li>
+        <li class="nav-item"><a class="nav-link" href="/">Accueil</a></li>
+        <li class="nav-item"><a class="nav-link" href="/history">Historique</a></li>
+        <li class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>
       </ul>
     </div>
   </nav>
 
   <!-- Contenu principal -->
   <main class="container py-4 flex-grow-1">
-    <!-- En-tête avec logo UNICAEN -->
+    <!-- En-tête -->
     <div class="text-center mb-4">
       <div class="header-container">
-        <img src="{{ url_for('static', filename='images/logo_univ.png') }}" 
-             alt="Logo université" 
-             class="logo-univ">
         <div>
-          <h2 class="text-primary mb-1">🚘 Système de détection ANPR</h2>
+          <h2 class="text-primary mb-1">Système de détection ANPR</h2>
           <p class="lead mb-0">
             Utilisation d'IA et YOLOv5 pour identifier automatiquement les plaques
           </p>
@@ -158,7 +155,7 @@
         <div class="upload-card p-3 h-100">
           <div class="text-center mb-3">
             <span class="bg-primary bg-opacity-10 p-2 rounded-circle d-inline-block">
-              <span class="text-primary fs-4">🖼️</span>
+              <span class="text-primary fs-4">Image</span>
             </span>
           </div>
           <h5 class="text-center mb-3">Analyser une image</h5>
@@ -177,7 +174,7 @@
         <div class="upload-card p-3 h-100">
           <div class="text-center mb-3">
             <span class="bg-success bg-opacity-10 p-2 rounded-circle d-inline-block">
-              <span class="text-success fs-4">🎥</span>
+              <span class="text-success fs-4">Vidéo</span>
             </span>
           </div>
           <h5 class="text-center mb-3">Analyser une vidéo</h5>
@@ -196,7 +193,7 @@
         <div class="upload-card p-3 h-100">
           <div class="text-center mb-3">
             <span class="bg-danger bg-opacity-10 p-2 rounded-circle d-inline-block">
-              <span class="text-danger fs-4">📷</span>
+              <span class="text-danger fs-4">Webcam</span>
             </span>
           </div>
           <h5 class="text-center mb-3">Utiliser la webcam</h5>
@@ -210,12 +207,12 @@
 
   <!-- Footer -->
   <footer class="bg-dark text-white text-center py-3">
-    <small>Projet ANPR © 2025 – Malick SOKHONA & Rousseau Pierre-alexandre</small>
+    <small>Projet ANPR © 2025</small>
   </footer>
 
   <!-- Bouton thème flottant -->
   <button id="toggle-theme" class="theme-btn btn btn-dark shadow-lg">
-    🌙
+    Thème
   </button>
 
   <!-- Overlay chargement -->
@@ -236,7 +233,7 @@
 
     if (localStorage.getItem("theme") === "dark") {
       body.classList.add("dark-mode");
-      toggleBtn.textContent = "🌞";
+      toggleBtn.textContent = "Clair";
       toggleBtn.classList.remove("btn-dark");
       toggleBtn.classList.add("btn-light");
     }
@@ -244,7 +241,7 @@
     toggleBtn.addEventListener("click", () => {
       body.classList.toggle("dark-mode");
       const isDark = body.classList.contains("dark-mode");
-      toggleBtn.textContent = isDark ? "🌞" : "🌙";
+      toggleBtn.textContent = isDark ? "Clair" : "Sombre";
       localStorage.setItem("theme", isDark ? "dark" : "light");
       
       toggleBtn.classList.toggle("btn-dark", !isDark);

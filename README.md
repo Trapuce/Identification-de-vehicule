@@ -2,7 +2,7 @@
 
 # Système d'Identification de Véhicules par Détection de Plaques d'Immatriculation
 
-## 🚗 Description
+## Description
 
 Un système complet de reconnaissance automatique de plaques d'immatriculation (ALPR) comprenant :
 - Détection des véhicules avec YOLOv5
@@ -10,7 +10,7 @@ Un système complet de reconnaissance automatique de plaques d'immatriculation (
 - Interface web interactive avec Flask
 - Historique des détections dans une base de données
 
-## 🔐 Accès Administration
+## Accès Administration
 
 L'interface d'administration est protégée par mot de passe.  
 **Identifiants par défaut :**  
@@ -30,7 +30,7 @@ Pour modifier le mot de passe, éditez la variable `ADMIN_PASSWORD` dans `app.py
 | Frontend         | HTML5, CSS3, Bootstrap 5             |
 | Déploiement      | Peut être conteneurisé avec Docker   |
 
-## 📸 Fonctionnalités clés
+## Fonctionnalités clés
 
 - **Détection en temps réel** via webcam
 - **Traitement par lots** d'images/vidéos
@@ -38,7 +38,7 @@ Pour modifier le mot de passe, éditez la variable `ADMIN_PASSWORD` dans `app.py
 - **Export des résultats** (CSV, PDF)
 - **Tableau de bord** d'administration
 
-## 🚀 Installation et Utilisation
+## Installation et Utilisation
 
 ### Prérequis
 - Python 3.8+

@@ -27,31 +27,31 @@
 </head>
 <body class="bg-light" id="main-body">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
-    <a class="navbar-brand fw-bold" href="/">🚘 ANPR</a>
+    <a class="navbar-brand fw-bold" href="/">ANPR</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="mainNavbar">
         <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="/">🏠 Accueil</a></li>
-            <li class="nav-item"><a class="nav-link" href="/history">📋 Historique</a></li>
-            <li class="nav-item"><a class="nav-link" href="/admin">⚙️ Admin</a></li>
+            <li class="nav-item"><a class="nav-link" href="/">Accueil</a></li>
+            <li class="nav-item"><a class="nav-link" href="/history">Historique</a></li>
+            <li class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>
             <li class="nav-item">
-                <button id="toggle-theme" class="btn btn-sm btn-outline-light ms-3">🌙 Thème</button>
+                <button id="toggle-theme" class="btn btn-sm btn-outline-light ms-3">Thème</button>
             </li>
         </ul>
     </div>
 </nav>
 <div class="text-end px-4 py-2">
-    <button id="toggle-theme" class="btn btn-sm btn-outline-secondary">🌙 Activer le mode sombre</button>
+    <button id="toggle-theme" class="btn btn-sm btn-outline-secondary">Activer le mode sombre</button>
 </div>
 <div class="container py-5 text-center">
-    <h2 class="text-danger mb-4">📡 Webcam en direct</h2>
+    <h2 class="text-danger mb-4">Webcam en direct</h2>
 
     <!-- Alerte informative -->
     <div class="alert alert-warning text-center w-75 mx-auto">
-        ⚠️ Les plaques détectées en direct ne seront pas enregistrées tant que vous n'avez pas cliqué sur
-        <strong>"🎥 Capturer & enregistrer le live"</strong>.
+        Les plaques détectées en direct ne seront pas enregistrées tant que vous n'avez pas cliqué sur
+        <strong>"Capturer & enregistrer le live"</strong>.
     </div>
 
     <!-- Flux MJPEG en direct -->
@@ -59,12 +59,12 @@
 
     <!-- Bouton d'enregistrement -->
     <form action="/use_webcam" method="post" class="mb-4">
-        <button id="capture-btn" class="btn btn-danger mt-2" disabled>🎥 Capturer & enregistrer le live</button>    </form>
+        <button id="capture-btn" class="btn btn-danger mt-2" disabled>Capturer & enregistrer le live</button>    </form>
 
-    <h4>📋 Plaques détectées :</h4>
+    <h4>Plaques détectées :</h4>
     <div id="plates" class="mb-3">Chargement...</div>
 
-    <a href="/" class="btn btn-primary">⬅️ Retour</a>
+    <a href="/" class="btn btn-primary">Retour</a>
 </div>
 
 <script>
@@ -93,16 +93,16 @@
     const body = document.getElementById("main-body");
     if (localStorage.getItem("theme") === "dark") {
         body.classList.add("dark-mode");
-        toggleBtn.textContent = "🌞 Activer le mode clair";
+        toggleBtn.textContent = "Activer le mode clair";
     }
     toggleBtn.addEventListener("click", () => {
         body.classList.toggle("dark-mode");
         if (body.classList.contains("dark-mode")) {
             localStorage.setItem("theme", "dark");
-            toggleBtn.textContent = "🌞 Activer le mode clair";
+            toggleBtn.textContent = "Activer le mode clair";
         } else {
             localStorage.setItem("theme", "light");
-            toggleBtn.textContent = "🌙 Activer le mode sombre";
+            toggleBtn.textContent = "Activer le mode sombre";
         }
     });
 

@@ -37,15 +37,14 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
   <a class="navbar-brand fw-bold d-flex align-items-center" href="/">
-    <img src="{{ url_for('static', filename='images/logo_univ.png') }}" alt="Logo" width="40" class="me-2">
-    🚘 ANPR
+    ANPR
   </a>
   <ul class="navbar-nav ms-auto">
-    <li class="nav-item"><a class="nav-link" href="/">🏠 Accueil</a></li>
-    <li class="nav-item"><a class="nav-link" href="/history">📋 Historique</a></li>
+    <li class="nav-item"><a class="nav-link" href="/">Accueil</a></li>
+    <li class="nav-item"><a class="nav-link" href="/history">Historique</a></li>
   </ul>
-  <button id="toggle-theme" class="btn btn-sm btn-outline-light ms-3">🌙 Thème</button>
-  <a href="/logout" class="btn btn-sm btn-outline-light ms-3">🔓 Se déconnecter</a>
+  <button id="toggle-theme" class="btn btn-sm btn-outline-light ms-3">Thème</button>
+  <a href="/logout" class="btn btn-sm btn-outline-light ms-3">Se déconnecter</a>
 </nav>
 
 {% with messages = get_flashed_messages() %}
@@ -62,45 +61,45 @@
 {% endwith %}
 
 <div class="container py-5">
-  <h2 class="text-danger mb-4">⚙️ Admin - Gestion des plaques</h2>
+  <h2 class="text-danger mb-4">Admin - Gestion des plaques</h2>
 
   <!-- 📊 Graphiques -->
   <div class="row mb-5">
     <div class="col-md-6 d-flex flex-column align-items-center">
-      <h6>📊 Répartition des sources</h6>
+      <h6>Répartition des sources</h6>
       <canvas id="sourceChart" style="max-width: 300px; max-height: 300px;"></canvas>
     </div>
     <div class="col-md-6 d-flex flex-column align-items-center">
-      <h6>📅 Plaques par date</h6>
+      <h6>Plaques par date</h6>
       <canvas id="dateChart" style="max-width: 350px; max-height: 300px;"></canvas>
     </div>
   </div>
 
   <div class="mb-3 text-end">
-    <a href="{{ url_for('add_plate') }}" class="btn btn-outline-primary">➕ Ajouter une plaque</a>
+    <a href="{{ url_for('add_plate') }}" class="btn btn-outline-primary">Ajouter une plaque</a>
   </div>
 
-  <button class="btn btn-outline-danger mb-3" data-bs-toggle="modal" data-bs-target="#confirmDeleteAll">🧹 Supprimer tout</button>
+  <button class="btn btn-outline-danger mb-3" data-bs-toggle="modal" data-bs-target="#confirmDeleteAll">Supprimer tout</button>
 
   <div class="mb-3 d-flex flex-wrap justify-content-between align-items-center">
     <div class="d-flex gap-2 flex-wrap">
       <form action="/delete_by_source" method="post">
         <input type="hidden" name="source" value="video">
-        <button class="btn btn-outline-warning">🗑️ Supprimer les vidéos</button>
+        <button class="btn btn-outline-warning">Supprimer les vidéos</button>
       </form>
       <form action="/delete_by_source" method="post">
         <input type="hidden" name="source" value="image">
-        <button class="btn btn-outline-success">🗑️ Supprimer les images</button>
+        <button class="btn btn-outline-success">Supprimer les images</button>
       </form>
       <form action="/delete_by_source" method="post">
         <input type="hidden" name="source" value="webcam">
-        <button class="btn btn-outline-info">🗑️ Supprimer les webcams</button>
+        <button class="btn btn-outline-info">Supprimer les webcams</button>
       </form>
     </div>
   
     <div class="d-flex gap-2 mt-2 mt-md-0">
-      <a href="/export-pdf" class="btn btn-outline-danger">📄 Exporter en PDF</a>
-      <a href="/export-csv" class="btn btn-outline-primary">🧾 Exporter en CSV</a>
+      <a href="/export-pdf" class="btn btn-outline-danger">Exporter en PDF</a>
+      <a href="/export-csv" class="btn btn-outline-primary">Exporter en CSV</a>
     </div>
   </div>
 
@@ -115,20 +114,20 @@
   </form>
 
   <div class="row text-center mb-4">
-    <div class="col"><div class="alert alert-primary">📊 Total : <strong>{{ count_total }}</strong></div></div>
-    <div class="col"><div class="alert alert-success">🖼️ Image : <strong>{{ count_image }}</strong></div></div>
-    <div class="col"><div class="alert alert-info">🎞️ Vidéo : <strong>{{ count_video }}</strong></div></div>
-    <div class="col"><div class="alert alert-warning">📷 Webcam : <strong>{{ count_webcam }}</strong></div></div>
+    <div class="col"><div class="alert alert-primary">Total : <strong>{{ count_total }}</strong></div></div>
+    <div class="col"><div class="alert alert-success">Image : <strong>{{ count_image }}</strong></div></div>
+    <div class="col"><div class="alert alert-info">Vidéo : <strong>{{ count_video }}</strong></div></div>
+    <div class="col"><div class="alert alert-warning">Webcam : <strong>{{ count_webcam }}</strong></div></div>
   </div>
 
   <div class="mb-3">
-    <input type="text" id="searchInput" class="form-control" placeholder="🔍 Rechercher une plaque, source ou date...">
+    <input type="text" id="searchInput" class="form-control" placeholder="Rechercher une plaque, source ou date...">
   </div>
 
   {% if plates %}
   <form id="delete-form" method="POST" action="{{ url_for('delete_selected') }}">
     <div class="mb-2 text-end">
-      <button type="button" class="btn btn-danger btn-sm" id="delete-selected-btn">🗑️ Supprimer la sélection</button>
+      <button type="button" class="btn btn-danger btn-sm" id="delete-selected-btn">Supprimer la sélection</button>
     </div>
 
     <table class="table table-bordered table-hover text-center align-middle">
@@ -160,8 +159,8 @@
           </td>
           <td>
             <div class="d-flex gap-2 justify-content-center">
-              <a href="{{ url_for('edit_plate', id=plate[0], from_page='admin') }}" class="btn btn-sm btn-warning">✏️</a>
-              <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ plate[0] }}">🗑️</button>
+              <a href="{{ url_for('edit_plate', id=plate[0], from_page='admin') }}" class="btn btn-sm btn-warning">Modifier</a>
+              <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ plate[0] }}">Supprimer</button>
             </div>
           </td>
         </tr>
@@ -175,7 +174,7 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header bg-danger text-white">
-          <h5 class="modal-title" id="deleteModalLabel{{ plate[0] }}">❌ Confirmation de suppression</h5>
+          <h5 class="modal-title" id="deleteModalLabel{{ plate[0] }}">Confirmation de suppression</h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">Supprimer la plaque <strong>{{ plate[1] }}</strong> ?</div>
@@ -196,7 +195,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header bg-danger text-white">
-        <h5 class="modal-title">⚠️ Supprimer toutes les plaques</h5>
+        <h5 class="modal-title">Supprimer toutes les plaques</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">Cette action est <strong>irréversible</strong>. Supprimer toutes les plaques ?</div>
@@ -216,13 +215,13 @@
   const body = document.getElementById("main-body");
   if (localStorage.getItem("theme") === "dark") {
     body.classList.add("dark-mode");
-    toggleBtn.textContent = "🌞 Thème clair";
+    toggleBtn.textContent = "Thème clair";
   }
   toggleBtn.addEventListener("click", () => {
     body.classList.toggle("dark-mode");
     const mode = body.classList.contains("dark-mode") ? "dark" : "light";
     localStorage.setItem("theme", mode);
-    toggleBtn.textContent = mode === "dark" ? "🌞 Thème clair" : "🌙 Thème sombre";
+    toggleBtn.textContent = mode === "dark" ? "Thème clair" : "Thème sombre";
   });
 
   document.getElementById("searchInput").addEventListener("input", function () {

@@ -50,18 +50,17 @@
 </head>
 <body class="bg-light" id="main-body">
 
-<!-- 🔹 Navbar -->
+<!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
   <a class="navbar-brand fw-bold d-flex align-items-center" href="/">
-    <img src="{{ url_for('static', filename='images/logo_univ.png') }}" alt="Logo" width="40" class="me-2">
-    🚘 ANPR
+    ANPR
   </a>
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav ms-auto">
-      <li class="nav-item"><a class="nav-link" href="/">🏠 Accueil</a></li>
-      <li class="nav-item"><a class="nav-link" href="/admin">⚙️ Admin</a></li>
+      <li class="nav-item"><a class="nav-link" href="/">Accueil</a></li>
+      <li class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>
       <li class="nav-item">
-        <button id="toggle-theme" class="btn btn-sm btn-outline-light ms-3">🌙 Thème</button>
+        <button id="toggle-theme" class="btn btn-sm btn-outline-light ms-3">Thème</button>
       </li>
     </ul>
   </div>
@@ -69,9 +68,9 @@
 
 <div class="container py-4">
   
-  <!-- 🔎 Recherche + 📤 Export -->
+  <!-- Recherche + Export -->
   <div class="d-flex justify-content-between align-items-center mb-3">
-    <input type="text" id="searchInput" class="form-control w-50" placeholder="🔍 Rechercher une plaque, source ou date...">
+    <input type="text" id="searchInput" class="form-control w-50" placeholder="Rechercher une plaque, source ou date...">
     <form method="get" class="d-flex align-items-center gap-2">
       <label class="me-2">Filtrer :</label>
       <select name="source" onchange="this.form.submit()" class="form-select w-auto">
@@ -84,12 +83,12 @@
     
   </div>
 
-  <!-- 🔢 Statistiques -->
+  <!-- Statistiques -->
   <div class="row text-center mb-4">
-    <div class="col"><div class="alert alert-primary">📊 Total : <strong>{{ count_total }}</strong></div></div>
-    <div class="col"><div class="alert alert-success">🖼️ Image : <strong>{{ count_image }}</strong></div></div>
-    <div class="col"><div class="alert alert-info">🎞️ Vidéo : <strong>{{ count_video }}</strong></div></div>
-    <div class="col"><div class="alert alert-warning">📷 Webcam : <strong>{{ count_webcam }}</strong></div></div>
+    <div class="col"><div class="alert alert-primary">Total : <strong>{{ count_total }}</strong></div></div>
+    <div class="col"><div class="alert alert-success">Image : <strong>{{ count_image }}</strong></div></div>
+    <div class="col"><div class="alert alert-info">Vidéo : <strong>{{ count_video }}</strong></div></div>
+    <div class="col"><div class="alert alert-warning">Webcam : <strong>{{ count_webcam }}</strong></div></div>
   </div>
 
   {% if plates %}
@@ -141,11 +140,11 @@
           {% endif %}
         </td>
         
-        <!-- 🎞️ Mini bouton d'affichage de vidéo -->
+        <!-- Mini bouton d'affichage de vidéo -->
 <td>
     {% if plate[2] == 'video' or plate[2] == 'webcam' %}
       <button class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#videoModal{{ plate[0] }}">
-        ▶️ Voir
+        Voir
       </button>
   
       <!-- Modale Bootstrap -->
@@ -153,7 +152,7 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
           <div class="modal-content bg-dark text-white">
             <div class="modal-header">
-              <h5 class="modal-title">🎥 Vidéo pour {{ plate[1] }}</h5>
+              <h5 class="modal-title">Vidéo pour {{ plate[1] }}</h5>
               <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body text-center">
@@ -181,34 +180,34 @@
   <p class="alert alert-info">Aucune plaque détectée.</p>
   {% endif %}
 
-  <a href="/" class="btn btn-secondary mt-4">⬅️ Retour à l'accueil</a>
+  <a href="/" class="btn btn-secondary mt-4">Retour à l'accueil</a>
 </div>
 
 <footer class="bg-dark text-white text-center py-3 mt-5">
-  Projet ANPR © 2025 – Malick SOKHONA & Alexandre 🚀
+  Projet ANPR © 2025
 </footer>
 
 <!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- 🌙 Thème + 🔍 Recherche -->
+<!-- Thème + Recherche -->
 <script>
   const toggleBtn = document.getElementById("toggle-theme");
   const body = document.getElementById("main-body");
 
   if (localStorage.getItem("theme") === "dark") {
     body.classList.add("dark-mode");
-    toggleBtn.textContent = "🌞 Thème clair";
+    toggleBtn.textContent = "Thème clair";
   }
 
   toggleBtn.addEventListener("click", () => {
     body.classList.toggle("dark-mode");
     const mode = body.classList.contains("dark-mode") ? "dark" : "light";
-    toggleBtn.textContent = mode === "dark" ? "🌞 Thème clair" : "🌙 Thème sombre";
+    toggleBtn.textContent = mode === "dark" ? "Thème clair" : "Thème sombre";
     localStorage.setItem("theme", mode);
   });
 
-  // 🔍 Recherche dynamique
+  // Recherche dynamique
   document.getElementById("searchInput").addEventListener("input", function () {
     const value = this.value.toLowerCase();
     const rows = document.querySelectorAll("table tbody tr");
