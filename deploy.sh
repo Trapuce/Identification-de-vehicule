@@ -63,6 +63,13 @@ python3 -m venv venv
 source venv/bin/activate
 pip install --upgrade pip
 pip install -r requirements.txt
+
+# Corriger le problème d'import yolo_pipeline
+if [ -f "yolo_pipeline.py" ] && [ ! -f "plate_recognition/yolo_pipeline.py" ]; then
+    cp yolo_pipeline.py plate_recognition/
+    print_success "Fichier yolo_pipeline.py copié dans plate_recognition/"
+fi
+
 print_success "Environnement Python configuré"
 
 print_step "5. Création des répertoires nécessaires..."
@@ -86,6 +93,7 @@ User=www-data
 Group=www-data
 WorkingDirectory=$APP_DIR
 Environment=PATH=$APP_DIR/venv/bin
+Environment=PYTHONPATH=$APP_DIR
 ExecStart=$APP_DIR/venv/bin/gunicorn --bind 0.0.0.0:3001 --workers 4 --timeout 120 --access-logfile - --error-logfile - plate_recognition.app:app
 Restart=always
 
