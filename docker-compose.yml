@@ -3,7 +3,7 @@ version: '3.8'
 # Configuration pour VPS avec ressources limitées
 x-common-variables: &common-variables
   COMPOSE_HTTP_TIMEOUT: 300
-  COMPOSE_PARALLEL_LIMIT: 1
+  COMPOSE_PARALLEL_LIMIT: 2
 
 services:
   # Application Flask

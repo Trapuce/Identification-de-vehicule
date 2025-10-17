@@ -32,7 +32,7 @@ log_warning() {
 
 # Configuration pour VPS
 export COMPOSE_HTTP_TIMEOUT=300
-export COMPOSE_PARALLEL_LIMIT=1
+export COMPOSE_PARALLEL_LIMIT=2
 
 check_docker() {
     log_info "Vérification de Docker et Docker Compose..."
@@ -52,7 +52,8 @@ check_resources() {
     
     # Vérifier la mémoire disponible
     MEMORY_GB=$(free -g | awk 'NR==2{printf "%.1f", $7/1024}')
-    if (( $(echo "$MEMORY_GB < 2.0" | bc -l) )); then
+    MEMORY_INT=$(echo "$MEMORY_GB" | cut -d. -f1)
+    if [ "$MEMORY_INT" -lt 2 ]; then
         log_warning "Mémoire disponible: ${MEMORY_GB}GB (recommandé: 2GB+)"
     else
         log_success "Mémoire disponible: ${MEMORY_GB}GB"
