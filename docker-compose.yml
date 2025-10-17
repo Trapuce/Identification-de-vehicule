@@ -1,5 +1,10 @@
 version: '3.8'
 
+# Configuration pour VPS avec ressources limitées
+x-common-variables: &common-variables
+  COMPOSE_HTTP_TIMEOUT: 300
+  COMPOSE_PARALLEL_LIMIT: 1
+
 services:
   # Application Flask
   plate-recognition:
@@ -9,6 +14,15 @@ services:
     environment:
       - FLASK_ENV=production
       - FLASK_APP=plate_recognition/app.py
+    # Optimisations pour VPS avec ressources limitées
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1.0'
+        reservations:
+          memory: 1G
+          cpus: '0.5'
     volumes:
       - ./plate_recognition/static/exports:/app/plate_recognition/static/exports
       - ./plate_recognition/uploads:/app/plate_recognition/uploads
