@@ -1,0 +1,55 @@
+# Environnement virtuel Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.git
+.mypy_cache
+.pytest_cache
+.hypothesis
+
+# Fichiers de développement
+.gitignore
+README.md
+*.md
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Fichiers temporaires
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# Fichiers de test
+Test/
+tests/
+*_test.py
+test_*.py
+
+# Fichiers de déploiement
+docker-compose.yml
+Dockerfile
+.dockerignore
+deploy.sh
+nginx.conf
+
+# Fichiers de données volumineux (optionnel)
+# plate_recognition/uploads/*
+# plate_recognition/static/exports/*

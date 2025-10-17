@@ -456,5 +456,108 @@
       }
     ],
     "nbr_req_restants": 96
+  },
+  "ER130VZ": {
+    "erreur": "",
+    "immat": "ER130VZ",
+    "pays": "FR",
+    "marque": "VOLVO",
+    "modele": "XC90 II (256)",
+    "modele_en": "XC90 II",
+    "version": "D4",
+    "debut_modele": "2015-06",
+    "fin_modele": "2018-12",
+    "date1erCir_us": "2017-11-06",
+    "date1erCir_fr": "06-11-2017",
+    "co2": "136",
+    "energie": "2",
+    "energieNGC": "DIESEL",
+    "type_moteur": "Diesel",
+    "genreVCG": "1",
+    "genreVCGNGC": "VP",
+    "puisFisc": "10",
+    "carrosserieCG": "VEHICULE TOUT CHEMIN",
+    "code_carrosserie": "53",
+    "carrosserie": "SUV",
+    "code_type_transmission": "1",
+    "type_transmission": "Traction avant",
+    "capacite_litres": "2.0",
+    "code_systeme_alimentation": "11",
+    "systeme_alimentation": "Injection directe",
+    "valves": "4",
+    "puisFiscReelKW": "139 KW",
+    "puisFiscReelCH": "189 CH",
+    "collection": "non",
+    "date30": "1989-06-30",
+    "vin": "YV1LFA8BDJ1330122",
+    "variante": "LFA8BD",
+    "boite_vitesse": "A",
+    "code_boite_vitesse": "",
+    "nr_passagers": "7",
+    "nb_portes": "7",
+    "type_mine": "M10VLVVPE14J097",
+    "cnit": "",
+    "couleur": "GRIS CLAIR",
+    "poids": "2690 KG",
+    "ptac": "2690 KG",
+    "ccm": "1969 CM3",
+    "cylindres": "4",
+    "propulsion": "",
+    "type_compression": "",
+    "longueur": "",
+    "largeur": "",
+    "hauteur": "",
+    "empattement": "",
+    "sra_id": "VO36189",
+    "sra_group": "34",
+    "sra_commercial": "D4",
+    "numero_serie": "J1330122",
+    "logo_marque": "https://api.apiplaqueimmatriculation.com/public/storage/logos_marques/?marque=volvo",
+    "photo_modele": "https://api.apiplaqueimmatriculation.com/public/storage/photos_modeles/111885.jpg",
+    "k_type": "111885",
+    "tecdoc_manu_id": "120",
+    "tecdoc_model_id": "13084",
+    "tecdoc_car_id": "111885",
+    "tecdoc_vehicules_compatible": "111885",
+    "code_moteur": "D4204T14",
+    "codes_platforme": "256",
+    "liste_sra_commercial": [
+      {
+        "sra_id": "VO36189",
+        "sra_commercial": "D4 INSCRIPTION"
+      },
+      {
+        "sra_id": "VO36193",
+        "sra_commercial": "D4 INSCRIPTION 7P"
+      },
+      {
+        "sra_id": "VO36190",
+        "sra_commercial": "D4 INSCRIPTION LUXE"
+      },
+      {
+        "sra_id": "VO36194",
+        "sra_commercial": "D4 INSCRIPTION LUXE 7P"
+      },
+      {
+        "sra_id": "VO36186",
+        "sra_commercial": "D4 KINETIC"
+      },
+      {
+        "sra_id": "VO36187",
+        "sra_commercial": "D4 MOMENTUM"
+      },
+      {
+        "sra_id": "VO36191",
+        "sra_commercial": "D4 MOMENTUM 7P"
+      },
+      {
+        "sra_id": "VO36188",
+        "sra_commercial": "D4 R-DESIGN"
+      },
+      {
+        "sra_id": "VO36192",
+        "sra_commercial": "D4 R-DESIGN 7P"
+      }
+    ]
   }
 }

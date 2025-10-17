@@ -1,35 +1,39 @@
-# Dockerfile pour déploiement ANPR
+# Utiliser une image Python officielle avec support pour OpenCV
 FROM python:3.11-slim
 
-# Installer les dépendances système
-RUN apt-get update && apt-get install -y \
+# Installer les dépendances système nécessaires (version simplifiée)
+RUN apt-get update && apt-get install -y --fix-missing \
     tesseract-ocr \
     tesseract-ocr-fra \
     ffmpeg \
     libglib2.0-0 \
-    libsm6 \
-    libxext6 \
-    libxrender-dev \
     libgomp1 \
-    libglib2.0-0 \
-    && rm -rf /var/lib/apt/lists/*
+    wget \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
 
-# Créer le répertoire de travail
+# Définir le répertoire de travail
 WORKDIR /app
 
-# Copier les requirements et installer les dépendances Python
-COPY requirements-prod.txt .
-RUN pip install --no-cache-dir -r requirements-prod.txt
+# Copier les fichiers de requirements
+COPY requirements.txt .
+
+# Installer les dépendances Python
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copier le code de l'application
 COPY . .
 
 # Créer les répertoires nécessaires
-RUN mkdir -p /app/plate_recognition/static/exports \
-    && mkdir -p /app/plate_recognition/uploads
+RUN mkdir -p plate_recognition/uploads plate_recognition/static/exports
 
-# Exposer le port
-EXPOSE 8000
+# Exposer le port 5000
+EXPOSE 5000
 
-# Commande par défaut
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "4", "--timeout", "120", "plate_recognition.app:app"]
+# Variables d'environnement
+ENV FLASK_APP=plate_recognition/app.py
+ENV FLASK_ENV=production
+ENV PYTHONPATH=/app
+
+# Commande pour démarrer l'application
+CMD ["python", "plate_recognition/app.py"]

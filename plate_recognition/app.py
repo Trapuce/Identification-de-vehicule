@@ -839,4 +839,10 @@ from database import init_db
 init_db()
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    import os
+    # Configuration pour la production
+    debug_mode = os.environ.get('FLASK_ENV') != 'production'
+    host = os.environ.get('FLASK_HOST', '0.0.0.0')
+    port = int(os.environ.get('FLASK_PORT', 5000))
+    
+    app.run(debug=debug_mode, host=host, port=port)
