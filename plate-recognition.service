@@ -1,0 +1,15 @@
+[Unit]
+Description=Plate Recognition Flask App
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/opt/Identification-de-vehicule/plate_recognition
+Environment=PATH=/opt/Identification-de-vehicule/venv/bin
+ExecStart=/opt/Identification-de-vehicule/venv/bin/python app.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
